@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geeta Nair – LIC Agent</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0e1318;
+    --bg3: #141b22;
+    --accent: #d4f03c;
+    --accent2: #a8c22e;
+    --text: #e8edf2;
+    --muted: #7a8a96;
+    --border: rgba(212,240,60,0.15);
+    --card: rgba(20,27,34,0.9);
+    --gold: #f5c842;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 40px;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; letter-spacing: -0.5px; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #080c10;
+    border: none; border-radius: 50px; padding: 10px 22px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem;
+    cursor: pointer; text-decoration: none; transition: transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover { transform: scale(1.05); background: var(--accent2); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 40px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(212,240,60,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(245,200,66,0.05) 0%, transparent 60%);
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(212,240,60,0.1); border: 1px solid var(--border);
+    border-radius: 50px; padding: 6px 16px; font-size: 0.8rem; color: var(--accent);
+    margin-bottom: 28px; font-weight: 500;
+  }
+  .hero-badge::before { content: '●'; font-size: 0.5rem; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05; letter-spacing: -2px;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { color: var(--accent); font-style: italic; }
+  .hero p {
+    max-width: 560px; color: var(--muted); font-size: 1.05rem;
+    margin-bottom: 36px; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #080c10;
+    border: none; border-radius: 50px; padding: 14px 32px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; text-decoration: none; transition: transform 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--text);
+    border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; padding: 14px 32px;
+    font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1rem;
+    cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 64px;
+    border-top: 1px solid var(--border); padding-top: 40px;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+  /* SECTIONS */
+  section { padding: 90px 40px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block; background: rgba(212,240,60,0.1);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px 12px; font-size: 0.75rem; color: var(--accent);
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  h2.section-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+  .section-sub { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 48px; }
+
+  /* AI SEARCH */
+  .search-section { background: var(--bg2); }
+  .search-box-wrap {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px; margin-bottom: 32px;
+  }
+  .search-input-row {
+    display: flex; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .search-input {
+    flex: 1; min-width: 220px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px; padding: 14px 18px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .search-input::placeholder { color: var(--muted); }
+  .search-btn {
+    background: var(--accent); color: #080c10;
+    border: none; border-radius: 10px; padding: 14px 24px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    cursor: pointer; transition: transform 0.2s; white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .search-btn:hover { transform: scale(1.03); }
+  .search-btn.loading { opacity: 0.7; pointer-events: none; }
+  .quick-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .qtag {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50px; padding: 6px 14px; font-size: 0.8rem; color: var(--muted);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .qtag:hover { border-color: var(--accent); color: var(--accent); background: rgba(212,240,60,0.08); }
+
+  #ai-result {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px; display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+  #ai-result h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--accent); margin-bottom: 14px; }
+  #ai-result-content { color: var(--text); line-height: 1.8; font-size: 0.95rem; }
+  #ai-result-content strong { color: var(--accent); }
+  .loading-dots::after {
+    content: ''; animation: dots 1.2s infinite;
+  }
+  @keyframes dots {
+    0% { content: '.'; } 33% { content: '..'; } 66% { content: '...'; }
+  }
+
+  /* POLICIES GRID */
+  .policies-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .policy-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 24px; transition: all 0.25s;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .policy-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--accent); transform: scaleX(0); transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .policy-card:hover { border-color: var(--border); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .policy-card:hover::before { transform: scaleX(1); }
+  .policy-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(212,240,60,0.1); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  .policy-type {
+    font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px;
+    color: var(--accent); font-weight: 600; margin-bottom: 6px;
+  }
+  .policy-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 10px; }
+  .policy-desc { color: var(--muted); font-size: 0.87rem; line-height: 1.6; margin-bottom: 16px; }
+  .policy-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ptag {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 50px; padding: 3px 10px; font-size: 0.74rem; color: var(--muted);
+  }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 500;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(10px);
+    align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px; max-width: 640px; width: 100%;
+    max-height: 85vh; overflow-y: auto; position: relative;
+    animation: fadeIn 0.3s ease;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: rgba(255,255,255,0.08); border: none; color: var(--text);
+    width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.15); }
+  .modal-tag { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+  .modal h2 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; }
+  .modal-desc { color: var(--muted); margin-bottom: 24px; }
+  .modal-features { display: grid; gap: 10px; margin-bottom: 24px; }
+  .modal-feature {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: rgba(212,240,60,0.04); border: 1px solid rgba(212,240,60,0.08);
+    border-radius: 10px; padding: 12px 14px;
+  }
+  .modal-feature-icon { color: var(--accent); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .modal-feature-text { font-size: 0.88rem; color: var(--text); }
+  .modal-feature-text strong { color: var(--accent); display: block; font-size: 0.8rem; margin-bottom: 2px; }
+  .modal-cta {
+    width: 100%; background: var(--accent); color: #080c10;
+    border: none; border-radius: 10px; padding: 14px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: transform 0.2s; text-decoration: none;
+    display: block; text-align: center;
+  }
+  .modal-cta:hover { transform: scale(1.02); }
+
+  /* WHY SECTION */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+  .why-card {
+    background: var(--card); border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px; padding: 24px; transition: transform 0.2s;
+  }
+  .why-card:hover { transform: translateY(-3px); }
+  .why-num {
+    font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800;
+    color: rgba(212,240,60,0.15); line-height: 1; margin-bottom: 12px;
+  }
+  .why-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
+  .why-card p { color: var(--muted); font-size: 0.87rem; }
+
+  /* CONTACT */
+  .contact-section { background: var(--bg2); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media(max-width:640px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    text-decoration: none; color: var(--text);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .contact-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .contact-icon { font-size: 2rem; }
+  .contact-label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .contact-value { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; }
+  .contact-desc { font-size: 0.85rem; color: var(--muted); }
+  .contact-card.whatsapp { border-color: rgba(37,211,102,0.3); }
+  .contact-card.whatsapp:hover { box-shadow: 0 20px 40px rgba(37,211,102,0.1); }
+  .contact-card.call { border-color: rgba(212,240,60,0.3); }
+  .contact-card.email { border-color: rgba(100,150,255,0.3); }
+
+  /* FOOTER */
+  footer {
+    padding: 40px; border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+    color: var(--muted); font-size: 0.85rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* RESPONSIVE */
+  @media(max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-stats { gap: 28px; }
+    footer { padding: 28px 20px; justify-content: center; text-align: center; }
+  }
+
+  /* TICKER */
+  .ticker-wrap {
+    background: var(--accent); overflow: hidden; padding: 10px 0;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-flex; gap: 60px;
+    animation: ticker 20s linear infinite;
+  }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item { font-family: 'Syne', sans-serif; font-size: 0.8rem; font-weight: 700; color: #080c10; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Geeta <span>Nair</span></div>
+  <div class="nav-links">
+    <a href="#search">Find Policy</a>
+    <a href="#policies">All Policies</a>
+    <a href="#why">Why Us</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="https://wa.me/919999999999" class="nav-cta">📲 WhatsApp</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">LIC Authorised Agent · Mumbai</div>
+  <h1>Secure your family's<br><em>future today</em></h1>
+  <p>Trusted LIC agent with over 15 years of experience. Find the right policy — life, health, pension, or investment — in minutes.</p>
+  <div class="hero-btns">
+    <a href="#search" class="btn-primary">🔍 Find Your Policy</a>
+    <a href="https://wa.me/919999999999?text=Hi%20Geeta%20ji,%20I%20want%20to%20know%20about%20LIC%20policies" class="btn-secondary">💬 Chat on WhatsApp</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Policies Issued</div></div>
+    <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Trusted & Govt. Backed</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Support Available</div></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="ticker-item">🛡️ LIC Jeevan Anand</span>
+    <span class="ticker-item">💰 LIC New Endowment Plan</span>
+    <span class="ticker-item">🏥 LIC Jeevan Arogya</span>
+    <span class="ticker-item">👴 LIC New Jeevan Nidhi</span>
+    <span class="ticker-item">📈 LIC Money Back Policy</span>
+    <span class="ticker-item">🎓 LIC Jeevan Tarun</span>
+    <span class="ticker-item">🏠 LIC Home Loan Cover</span>
+    <span class="ticker-item">🛡️ LIC Jeevan Anand</span>
+    <span class="ticker-item">💰 LIC New Endowment Plan</span>
+    <span class="ticker-item">🏥 LIC Jeevan Arogya</span>
+    <span class="ticker-item">👴 LIC New Jeevan Nidhi</span>
+    <span class="ticker-item">📈 LIC Money Back Policy</span>
+    <span class="ticker-item">🎓 LIC Jeevan Tarun</span>
+    <span class="ticker-item">🏠 LIC Home Loan Cover</span>
+  </div>
+</div>
+
+<!-- AI SEARCH -->
+<section id="search" class="search-section">
+  <div class="container">
+    <div class="section-tag">AI Policy Finder</div>
+    <h2 class="section-title">Ask anything about<br>LIC Policies</h2>
+    <p class="section-sub">Type your question in plain language — "best plan for my 5-year-old child", "tax saving plan", "plan with monthly returns" — and get instant guidance.</p>
+
+    <div class="search-box-wrap">
+      <div class="search-input-row">
+        <input type="text" id="policy-query" class="search-input"
+          placeholder="e.g. best plan for child education, or pension plan after 60..." />
+        <button class="search-btn" id="search-btn" onclick="searchPolicy()">
+          <span id="btn-label">✦ Ask AI</span>
+        </button>
+      </div>
+      <div class="quick-tags">
+        <span class="qtag" onclick="quickSearch('Tax saving plan under 80C')">Tax saving</span>
+        <span class="qtag" onclick="quickSearch('Child education policy')">Child education</span>
+        <span class="qtag" onclick="quickSearch('Best pension plan for retirement')">Retirement / Pension</span>
+        <span class="qtag" onclick="quickSearch('Term life insurance')">Term Insurance</span>
+        <span class="qtag" onclick="quickSearch('Money back plan with monthly income')">Money Back</span>
+        <span class="qtag" onclick="quickSearch('LIC policy for women')">For Women</span>
+        <span class="qtag" onclick="quickSearch('Endowment plan with guaranteed returns')">Endowment</span>
+        <span class="qtag" onclick="quickSearch('ULIP investment plan')">ULIP</span>
+      </div>
+    </div>
+
+    <div id="ai-result">
+      <h3>✦ AI Policy Advisor</h3>
+      <div id="ai-result-content"></div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="container">
+    <div class="section-tag">All Policies</div>
+    <h2 class="section-title">Explore LIC Plans</h2>
+    <p class="section-sub">Click any card to see full details, benefits, and eligibility.</p>
+    <div class="policies-grid" id="policies-grid"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" style="background: var(--bg2);">
+  <div class="container">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">Why thousands trust<br>Geeta Nair</h2>
+    <p class="section-sub">Not just an agent — a family financial guide.</p>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-num">01</div><h3>15+ Years Experience</h3><p>Deep expertise across all LIC plan types — life, health, pension, and ULIP.</p></div>
+      <div class="why-card"><div class="why-num">02</div><h3>Personalised Advice</h3><p>Every family is different. Get a plan tailored to your exact needs and budget.</p></div>
+      <div class="why-card"><div class="why-num">03</div><h3>Claim Support</h3><p>We assist with claims paperwork from start to finish — you're never alone.</p></div>
+      <div class="why-card"><div class="why-num">04</div><h3>Government Backed</h3><p>LIC is India's most trusted insurer, backed by the Government of India.</p></div>
+      <div class="why-card"><div class="why-num">05</div><h3>Quick Response</h3><p>WhatsApp or call — get answers within minutes, not days.</p></div>
+      <div class="why-card"><div class="why-num">06</div><h3>Free Consultation</h3><p>Zero cost policy review and recommendation — no obligations whatsoever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-tag">Get In Touch</div>
+    <h2 class="section-title">Talk to Geeta Nair<br>today — it's free</h2>
+    <p class="section-sub">Reach out via WhatsApp, phone, or email. Response within minutes.</p>
+    <div class="contact-grid">
+      <a href="https://wa.me/919999999999?text=Hi%20Geeta%20ji,%20I%20want%20to%20enquire%20about%20LIC%20policies"
+         class="contact-card whatsapp" target="_blank">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-value">+91 99999 99999</div>
+          <div class="contact-desc">Tap to start a WhatsApp chat — ask about any policy instantly.</div>
+        </div>
+      </a>
+      <a href="tel:+919999999999" class="contact-card call">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-label">Call Directly</div>
+          <div class="contact-value">+91 99999 99999</div>
+          <div class="contact-desc">Available Mon–Sat, 9am to 7pm. Happy to guide you.</div>
+        </div>
+      </a>
+      <a href="mailto:geeta072@gmail.com" class="contact-card email">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-label">Email</div>
+          <div class="contact-value">geeta072@gmail.com</div>
+          <div class="contact-desc">Send your details and requirements — detailed reply within 24 hours.</div>
+        </div>
+      </a>
+      <div class="contact-card" style="border-color: rgba(255,100,100,0.2);">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Location</div>
+          <div class="contact-value">Mumbai, Maharashtra</div>
+          <div class="contact-desc">Serving clients across Mumbai and pan-India via digital consultation.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>© 2025 Geeta Nair · LIC Authorised Agent · Mumbai</div>
+  <div>📧 <a href="mailto:geeta072@gmail.com">geeta072@gmail.com</a></div>
+  <div style="color: var(--muted); font-size: 0.78rem;">LIC of India policies are subject to terms & conditions. Please read the policy document carefully.</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="m-type"></div>
+    <h2 id="m-name"></h2>
+    <p class="modal-desc" id="m-desc"></p>
+    <div class="modal-features" id="m-features"></div>
+    <a id="m-cta" href="https://wa.me/919999999999" target="_blank" class="modal-cta">💬 Ask Geeta about this policy</a>
+  </div>
+</div>
+
+<script>
+const POLICIES = [
+  {
+    icon: "🛡️", type: "Life Insurance", name: "LIC Jeevan Anand (Plan 915)",
+    desc: "A participating non-linked plan combining savings and protection. Provides life cover even after maturity.",
+    tags: ["Whole Life Cover", "Bonus", "Tax Benefit"],
+    features: [
+      { label: "Entry Age", value: "18 – 50 years" },
+      { label: "Policy Term", value: "15 – 35 years" },
+      { label: "Sum Assured", value: "Minimum ₹1,00,000" },
+      { label: "Death Benefit", value: "Sum Assured + Bonuses (paid to nominee)" },
+      { label: "Maturity Benefit", value: "Sum Assured + Simple Reversionary Bonuses + Final Bonus" },
+      { label: "Life Cover after Maturity", value: "Yes — continues till death" },
+      { label: "Tax Benefit", value: "Under Section 80C and 10(10D)" },
+      { label: "Loan Facility", value: "Available after 3 years" },
+    ]
+  },
+  {
+    icon: "💰", type: "Endowment Plan", name: "LIC New Endowment Plan (Plan 914)",
+    desc: "A traditional savings + insurance plan with guaranteed maturity benefit. Ideal for conservative investors.",
+    tags: ["Savings", "Guaranteed Returns", "Low Risk"],
+    features: [
+      { label: "Entry Age", value: "8 – 55 years" },
+      { label: "Policy Term", value: "12 – 35 years" },
+      { label: "Sum Assured", value: "Minimum ₹1,00,000" },
+      { label: "Death Benefit", value: "10x annual premium or sum assured (higher) + bonuses" },
+      { label: "Maturity Benefit", value: "Basic Sum Assured + Bonuses" },
+      { label: "Bonus", value: "Simple Reversionary + Final Additional Bonus" },
+      { label: "Tax Benefit", value: "Section 80C & 10(10D)" },
+      { label: "Loan Facility", value: "Available after 3 full years" },
+    ]
+  },
+  {
+    icon: "📈", type: "Money Back", name: "LIC New Money Back (Plan 820)",
+    desc: "Periodic money-back payouts during the policy term plus death & maturity benefits. Great for regular income needs.",
+    tags: ["Periodic Returns", "Life Cover", "Tax Saving"],
+    features: [
+      { label: "Entry Age", value: "13 – 45 years" },
+      { label: "Policy Term", value: "20 years" },
+      { label: "Money Back", value: "20% of SA at years 5, 10, 15" },
+      { label: "Maturity Benefit", value: "40% of SA + Bonuses at year 20" },
+      { label: "Death Benefit", value: "Full 100% SA + Bonuses (irrespective of money backs paid)" },
+      { label: "Tax Benefit", value: "Section 80C & 10(10D)" },
+      { label: "Loan Facility", value: "Available" },
+    ]
+  },
+  {
+    icon: "🎓", type: "Children's Plan", name: "LIC Jeevan Tarun (Plan 834)",
+    desc: "Specially designed for children's education and future needs with flexible money-back options.",
+    tags: ["Child Education", "Flexible Payouts", "Parent Protection"],
+    features: [
+      { label: "Entry Age (Child)", value: "90 days – 12 years" },
+      { label: "Proposer Age", value: "Parent/Guardian, max 55 years" },
+      { label: "Policy Term", value: "Up to age 25 of child" },
+      { label: "Money Back", value: "5%–15% per year from age 20–24 (flexible options)" },
+      { label: "Maturity Benefit", value: "At age 25 — remaining SA + bonuses" },
+      { label: "Waiver of Premium", value: "On death of proposer, all future premiums waived" },
+      { label: "Tax Benefit", value: "Section 80C & 10(10D)" },
+    ]
+  },
+  {
+    icon: "👴", type: "Pension Plan", name: "LIC Jeevan Shanti (Plan 858)",
+    desc: "An immediate annuity plan — pay once, receive pension for life. Choose from 12 annuity options.",
+    tags: ["Retirement", "Immediate Pension", "Joint Life Option"],
+    features: [
+      { label: "Entry Age", value: "30 – 100 years" },
+      { label: "Purchase Price", value: "Minimum ₹1,50,000" },
+      { label: "Annuity Options", value: "12 variants — single or joint life" },
+      { label: "Annuity Frequency", value: "Monthly / Quarterly / Half-yearly / Yearly" },
+      { label: "Return of Purchase Price", value: "Available on death (selected options)" },
+      { label: "Deferred Annuity", value: "Deferment period 1–12 years for higher pension" },
+      { label: "Tax", value: "Annuity income taxable; 80CCC benefit on premium" },
+    ]
+  },
+  {
+    icon: "🏥", type: "Health Plan", name: "LIC Jeevan Arogya (Plan 904)",
+    desc: "A non-linked health insurance plan covering hospitalisation and surgical expenses with daily cash benefit.",
+    tags: ["Hospitalisation", "Surgical Cover", "Family Plan"],
+    features: [
+      { label: "Entry Age", value: "18 – 65 years (children from 91 days)" },
+      { label: "Health Cover Types", value: "Major surgical, hospitalisation daily cash, other surgical" },
+      { label: "Major Surgical Benefit", value: "Up to ₹4,00,000 (Level 1)" },
+      { label: "Daily Hospital Cash", value: "₹1,000 – ₹4,000 per day" },
+      { label: "Family Cover", value: "Self, spouse, children, parents all covered" },
+      { label: "Premium Waiver", value: "In case of insured's death mid-term" },
+      { label: "Tax Benefit", value: "Section 80D" },
+    ]
+  },
+  {
+    icon: "⚡", type: "Term Insurance", name: "LIC Tech Term (Plan 854)",
+    desc: "Pure online term plan — maximum life cover at very low premium. No maturity benefit.",
+    tags: ["Low Premium", "High Cover", "Online"],
+    features: [
+      { label: "Entry Age", value: "18 – 65 years" },
+      { label: "Policy Term", value: "10 – 40 years" },
+      { label: "Sum Assured", value: "Minimum ₹50,00,000" },
+      { label: "Death Benefit Options", value: "Level Sum Assured or Increasing SA" },
+      { label: "Accidental Death Rider", value: "Available as add-on" },
+      { label: "Return of Premium Option", value: "Available (higher premium)" },
+      { label: "Tax Benefit", value: "Section 80C & 10(10D)" },
+    ]
+  },
+  {
+    icon: "📊", type: "ULIP", name: "LIC SIIP (Plan 852)",
+    desc: "Unit Linked Insurance Plan — market-linked returns with life cover. Long-term wealth creation.",
+    tags: ["Market Linked", "Wealth Creation", "Life Cover"],
+    features: [
+      { label: "Entry Age", value: "90 days – 65 years" },
+      { label: "Premium Paying Term", value: "Same as policy term (min 10 years)" },
+      { label: "Fund Options", value: "Bond Fund, Secured Fund, Balanced Fund, Growth Fund" },
+      { label: "Partial Withdrawal", value: "After 5 years" },
+      { label: "Top-up Facility", value: "Available anytime" },
+      { label: "Death Benefit", value: "Higher of Sum Assured or Fund Value" },
+      { label: "Tax Benefit", value: "80C on premium; 10(10D) on maturity" },
+    ]
+  },
+  {
+    icon: "🌟", type: "Whole Life", name: "LIC Jeevan Umang (Plan 945)",
+    desc: "Whole life plan with annual survival benefit payable every year from end of premium paying term till age 100.",
+    tags: ["Annual Payout", "Whole Life", "Family Income"],
+    features: [
+      { label: "Entry Age", value: "90 days – 55 years" },
+      { label: "Premium Paying Term", value: "15, 20, 25, or 30 years" },
+      { label: "Annual Survival Benefit", value: "8% of Basic SA every year after premium term" },
+      { label: "Maturity Benefit (at 100)", value: "Sum Assured + Bonuses" },
+      { label: "Death Benefit", value: "Sum Assured + Bonuses — anytime before age 100" },
+      { label: "Tax Benefit", value: "Section 80C & 10(10D)" },
+      { label: "Loan Facility", value: "Available after 3 years" },
+    ]
+  },
+  {
+    icon: "💼", type: "Tax Saving", name: "LIC New Jeevan Anand (With Profits)",
+    desc: "Classic participating endowment + term combo. Ideal for salaried individuals wanting tax saving + life cover.",
+    tags: ["80C Deduction", "Savings", "Life Cover"],
+    features: [
+      { label: "Tax Deduction", value: "Up to ₹1.5L under Section 80C" },
+      { label: "Maturity Tax Free", value: "Under Section 10(10D) if conditions met" },
+      { label: "Entry Age", value: "18 – 50 years" },
+      { label: "Policy Term", value: "15 – 35 years" },
+      { label: "Bonus", value: "Simple Reversionary + Final Additional Bonus" },
+      { label: "Loan Facility", value: "Available" },
+      { label: "Surrender", value: "Allowed after 3 years" },
+    ]
+  },
+  {
+    icon: "👩", type: "Women's Plan", name: "LIC Aadhaar Shila (Plan 844)",
+    desc: "Exclusively for women. Simple endowment plan with accident and disability benefits.",
+    tags: ["Women Only", "Endowment", "Simple"],
+    features: [
+      { label: "Eligibility", value: "Female lives only" },
+      { label: "Entry Age", value: "8 – 55 years" },
+      { label: "Policy Term", value: "10 – 20 years" },
+      { label: "Sum Assured", value: "₹75,000 – ₹3,00,000" },
+      { label: "Accidental Death Benefit", value: "1.5x Sum Assured" },
+      { label: "Loyalty Addition", value: "Added at maturity / death claim" },
+      { label: "Tax Benefit", value: "Section 80C" },
+    ]
+  },
+  {
+    icon: "🏠", type: "Loan Protection", name: "LIC Loan & Home Cover",
+    desc: "Protect your home loan. Decreasing term plan — cover reduces as your loan balance reduces.",
+    tags: ["Home Loan", "Decreasing Cover", "Family Protection"],
+    features: [
+      { label: "Purpose", value: "Cover outstanding home/personal loan" },
+      { label: "Cover Type", value: "Decreasing Term Assurance" },
+      { label: "Policy Term", value: "Matches loan tenure" },
+      { label: "Benefit on Death", value: "Outstanding loan amount paid to bank; balance to family" },
+      { label: "Low Premium", value: "Single or regular premium options" },
+      { label: "Joint Cover", value: "Covers co-borrower too" },
+      { label: "Tax Benefit", value: "Section 80C" },
+    ]
+  },
+];
+
+// Render policy cards
+function renderPolicies() {
+  const grid = document.getElementById('policies-grid');
+  grid.innerHTML = POLICIES.map((p, i) => `
+    <div class="policy-card" onclick="openModal(${i})">
+      <div class="policy-icon">${p.icon}</div>
+      <div class="policy-type">${p.type}</div>
+      <div class="policy-name">${p.name}</div>
+      <div class="policy-desc">${p.desc}</div>
+      <div class="policy-tags">${p.tags.map(t => `<span class="ptag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+// Modal
+function openModal(i) {
+  const p = POLICIES[i];
+  document.getElementById('m-type').textContent = p.type;
+  document.getElementById('m-name').textContent = p.name;
+  document.getElementById('m-desc').textContent = p.desc;
+  document.getElementById('m-features').innerHTML = p.features.map(f => `
+    <div class="modal-feature">
+      <div class="modal-feature-icon">✦</div>
+      <div class="modal-feature-text">
+        <strong>${f.label}</strong>${f.value}
+      </div>
+    </div>
+  `).join('');
+  const waMsg = encodeURIComponent(`Hi Geeta ji, I want to know more about ${p.name}`);
+  document.getElementById('m-cta').href = `https://wa.me/919999999999?text=${waMsg}`;
+  document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal-overlay') || e.type === 'click') {
+    document.getElementById('modal-overlay').classList.remove('active');
+  }
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Quick search
+function quickSearch(q) {
+  document.getElementById('policy-query').value = q;
+  searchPolicy();
+}
+
+// AI Search via Claude API
+async function searchPolicy() {
+  const query = document.getElementById('policy-query').value.trim();
+  if (!query) return;
+
+  const btn = document.getElementById('search-btn');
+  const label = document.getElementById('btn-label');
+  const result = document.getElementById('ai-result');
+  const content = document.getElementById('ai-result-content');
+
+  btn.classList.add('loading');
+  label.textContent = '...';
+  result.style.display = 'block';
+  content.innerHTML = '<span class="loading-dots">Analysing your query</span>';
+
+  const policyContext = POLICIES.map(p =>
+    `**${p.name}** (${p.type}): ${p.desc} Tags: ${p.tags.join(', ')}. Details: ${p.features.map(f => f.label + ': ' + f.value).join('; ')}`
+  ).join('\n\n');
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: `You are Geeta Nair's LIC policy assistant. You help users understand LIC (Life Insurance Corporation of India) policies. Use ONLY the policy data provided. Be warm, concise, and helpful. Format your response in clean HTML using <strong> for key info, <br> for line breaks. Recommend 1-3 specific policies from the list that best match the query. Always end by saying "Contact Geeta ji at +91 99999 99999 for a free consultation!" Here are all available policies:\n\n${policyContext}`,
+        messages: [{ role: 'user', content: query }]
+      })
+    });
+
+    const data = await res.json();
+    const text = data.content?.map(c => c.text || '').join('') || 'Sorry, I could not fetch a response. Please contact Geeta directly!';
+    content.innerHTML = text;
+  } catch (err) {
+    content.innerHTML = `<strong>Couldn't connect to AI right now.</strong><br><br>Please contact Geeta Nair directly:<br>📞 <strong>+91 99999 99999</strong><br>📧 <strong>geeta072@gmail.com</strong>`;
+  }
+
+  btn.classList.remove('loading');
+  label.textContent = '✦ Ask AI';
+}
+
+document.getElementById('policy-query').addEventListener('keydown', e => {
+  if (e.key === 'Enter') searchPolicy();
+});
+
+renderPolicies();
+</script>
+</body>
+</html>
